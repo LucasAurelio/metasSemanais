@@ -1,0 +1,254 @@
+@(metas: List[Meta])(message: String)(semana1: Semana)(semana2: Semana)(semana3: Semana)(semana4: Semana)(semana5: Semana)(semana6: Semana)
+
+@main("Metas Semanais") {
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+
+
+    <div class="topbar">
+        <div class="fill">
+            <div class="container">
+                <a class="brand" href="/">Metas</a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="accordion" id="accordionConcluida">
+            <div class="container"><h3>Metas Concluídas</h3></div>
+            <div style="">
+            @for(meta <- metas) {
+                @if(meta.isConcluded()){
+                    <div class="meta" id="metaConcluida">
+                        <h6>Descrição: </h6>
+                        <p>@meta.getDescricao()</p>
+                        <h6>Prioridade: </h6>
+                        <p>@meta.getPrioridade()</p>
+                        <h6>Semana: </h6>
+                        <p>@meta.getSemana()</p>
+                        <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                            <input class="btn" type="submit" value="Excluir">
+                        </form>
+                    </div>
+                }
+            }
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div id="all">
+        <div id="semanas">
+            <div id="semana">
+                <div class="accordion" id="accordion1">
+                    <div class="container"><h3>3ª semana</h3></div>
+                    <div style="">
+                    @for(meta <- metas) {
+                        @if(!(meta.isConcluded())){
+                            @if(meta.getSemana().equals("3ª semana")) {
+                                <div class="meta">
+                                    <h6>Descrição: </h6>
+                                    <p>@meta.getDescricao()</p>
+                                    <h6>Prioridade: </h6>
+                                    <p>@meta.getPrioridade()</p>
+                                    <form method="post" action="@routes.Application.alteraStatus(meta.getId())">
+                                        <input class="btn" type="submit" value="Concluída">
+                                    </form>
+                                    <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                                        <input class="btn" type="submit" value="Excluir">
+                                    </form>
+                                </div>
+                                }
+                        }
+                    }
+                    </div>
+                </div>
+                <br>
+                <p>@(semana3.getMetasConcluidas()) meta(s) concluída(s).</p>
+                <p>@(semana3.getMetasPendentes()) meta(s) pendente(s).</p>
+                <p class="dados"> @(semana3.getQuantidadeMetas()) meta(s) no total.</p>
+                <div class="accordion">
+                    <div class="container"><h3>6ª semana</h3></div>
+                    <div style="">
+                    @for(meta <- metas) {
+                        @if(!(meta.isConcluded())){
+                            @if(meta.getSemana().equals("6ª semana")) {
+                                <div class="meta">
+                                    <h6>Descrição: </h6>
+                                    <p>@meta.getDescricao()</p>
+                                    <h6>Prioridade: </h6>
+                                    <p>@meta.getPrioridade()</p>
+                                    <form method="post" action="@routes.Application.alteraStatus(meta.getId())">
+                                        <input class="btn" type="submit" value="Concluída">
+                                    </form>
+                                    <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                                        <input class="btn" type="submit" value="Excluir">
+                                    </form>
+                                </div>
+                            }
+                        }
+                    }
+                    </div>
+                </div>
+                <br>
+                <p>@(semana6.getMetasConcluidas()) meta(s) concluída(s).</p>
+                <p>@(semana6.getMetasPendentes()) meta(s) pendente(s).</p>
+                <p>@(semana6.getQuantidadeMetas()) meta(s) no total.</p>
+            </div>
+            <div id="semana">
+                <div class="accordion" id="accordion1">
+                    <div class="container"><h3>2ª semana</h3></div>
+                    <div style="">
+                    @for(meta <- metas) {
+                        @if(!(meta.isConcluded())){
+                            @if(meta.getSemana().equals("2ª semana")) {
+                                <div class="meta">
+                                    <h6>Descrição: </h6>
+                                    <p>@meta.getDescricao()</p>
+                                    <h6>Prioridade: </h6>
+                                    <p>@meta.getPrioridade()</p>
+                                    <form method="post" action="@routes.Application.alteraStatus(meta.getId())">
+                                        <input class="btn" type="submit" value="Concluída">
+                                    </form>
+                                    <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                                        <input class="btn" type="submit" value="Excluir">
+                                    </form>
+                                </div>
+                            }
+                        }
+                    }
+                    </div>
+                </div>
+                <br>
+                <p>@(semana2.getMetasConcluidas()) meta(s) concluída(s).</p>
+                <p>@(semana2.getMetasPendentes()) meta(s) pendente(s).</p>
+                <p class="dados">@(semana2.getQuantidadeMetas()) meta(s) no total.</p>
+                <div class="accordion">
+                    <div class="container"><h3>5ª semana</h3></div>
+                    <div style="">
+                    @for(meta <- metas) {
+                        @if(!(meta.isConcluded())){
+                            @if(meta.getSemana().equals("5ª semana")) {
+                                <div class="meta">
+                                    <h6>Descrição: </h6>
+                                    <p>@meta.getDescricao()</p>
+                                    <h6>Prioridade: </h6>
+                                    <p>@meta.getPrioridade()</p>
+                                    <form method="post" action="@routes.Application.alteraStatus(meta.getId())">
+                                        <input class="btn" type="submit" value="Concluída">
+                                    </form>
+                                    <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                                        <input class="btn" type="submit" value="Excluir">
+                                    </form>
+                                </div>
+                            }
+                        }
+                    }
+                    </div>
+                </div>
+                <br>
+                <p>@(semana5.getMetasConcluidas()) meta(s) concluída(s).</p>
+                <p>@(semana5.getMetasPendentes()) meta(s) pendente(s).</p>
+                <p>@(semana5.getQuantidadeMetas()) meta(s) no total.</p>
+            </div>
+            <div id="semana">
+                <div class="accordion" id="accordion1">
+                    <div class="container"><h3>1ª semana</h3></div>
+                    <div style="">
+                    @for(meta <- metas) {
+                        @if(!(meta.isConcluded())){
+                            @if(meta.getSemana().equals("1ª semana")) {
+                                <div class="meta">
+                                    <h6>Descrição: </h6>
+                                    <p>@meta.getDescricao()</p>
+                                    <h6>Prioridade: </h6>
+                                    <p>@meta.getPrioridade()</p>
+                                    <form method="post" action="@routes.Application.alteraStatus(meta.getId())">
+                                        <input class="btn" type="submit" value="Concluída">
+                                    </form>
+                                    <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                                        <input class="btn" type="submit" value="Excluir">
+                                    </form>
+                                </div>
+                            }
+                        }
+                    }
+                    </div>
+                </div>
+                <br>
+                <p>@(semana1.getMetasConcluidas()) meta(s) concluída(s).</p>
+                <p>@(semana1.getMetasPendentes()) meta(s) pendente(s).</p>
+                <p class="dados">@(semana1.getQuantidadeMetas()) meta(s) no total.</p>
+                <div class="accordion">
+                    <div class="container"><h3>4ª semana</h3></div>
+                    <div style="">
+                    @for(meta <- metas) {
+                        @if(!(meta.isConcluded())){
+                            @if(meta.getSemana().equals("4ª semana")) {
+                                <div class="meta">
+                                    <h6>Descrição: </h6>
+                                    <p>@meta.getDescricao()</p>
+                                    <h6>Prioridade: </h6>
+                                    <p>@meta.getPrioridade()</p>
+                                    <form method="post" action="@routes.Application.alteraStatus(meta.getId())">
+                                        <input class="btn" type="submit" value="Concluída">
+                                    </form>
+                                    <form method="post" action="@routes.Application.excluiMeta(meta.getId())">
+                                        <input class="btn" type="submit" value="Excluir">
+                                    </form>
+                                </div>
+                            }
+                        }
+                    }
+                    </div>
+                </div>
+                <br>
+                <p>@(semana4.getMetasConcluidas()) meta(s) concluída(s).</p>
+                <p>@(semana4.getMetasPendentes()) meta(s) pendente(s).</p>
+                <p>@(semana4.getQuantidadeMetas()) meta(s) no total.</p>
+            </div>
+        </div>
+
+        <div id="formulario">
+            <div class ="container" align="center">
+                <h3 align="center">Organize-se!</h3>
+                <h3 align="center">Adicione uma nova meta:</h3>
+
+                <div class="modal-body" align="center">
+                    <form method="post" action="@routes.Application.criaMeta()">
+                        <input name="Descricao" type="text" placeholder="Descrição" required/>
+
+                        <select name="Prioridade" class="info">
+                            <option value="Baixa"> Prioridade </option>
+                            <option value="Baixa">Baixa</option>
+                            <option value="Média">Média</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+
+                        <select name="Semana" class="info">
+                            <option value="1ª semana">Semana</option>
+                            <option value="1ª semana">1ª semana</option>
+                            <option value="2ª semana">2ª semana</option>
+                            <option value="3ª semana">3ª semana</option>
+                            <option value="4ª semana">4ª semana</option>
+                            <option value="5ª semana">5ª semana</option>
+                            <option value="6ª semana">6ª semana</option>
+                        </select><br><br>
+
+                        <input class="btn" type="submit" value="Adicionar"/>
+                    </form>
+
+                </div>
+            </div>
+            <div>
+                <p align="center" id="message"><em>@message</em></p>
+            </div>
+        </div>
+    </div>
+
+}
